@@ -1,0 +1,10 @@
+.item{
+    border: 1px solid rgb(181, 95, 227);
+    border-radius: 5px;
+    margin: 2px;
+}
+
+.item:hover{
+    border: 1px solid black;
+    cursor:grab;
+}
