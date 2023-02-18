@@ -1,0 +1,61 @@
+import { Button ,TextField } from '@mui/material';
+import { Stack } from '@mui/system';
+import React, { useEffect, useState } from 'react'
+
+const words = [
+  "love", "covid", "2021", "life", "happy", "vaccine", "music", "new", "today", "work", "pandemic", "people", "time", "world", "good", "day", "like", "thankful", "health", "friends", "fun", "positive", "smile", "beautiful", "family", "goals", "summer", "friendship", "nature", "travel", "selfcare", "art", "faith", "blessed", "challenge", "instagood", "photooftheday", "fashion", "food", "weekend", "inspiration", "motivation", "fitness", "quote", "sun", "dog", "photography", "book", "movies"
+]
+
+
+const WordsPerMinute = () => {
+  const [word, setWord] = useState(()=> words[(Math.random()* words.length )| 0]);
+  const [characterCount, setCharacterCount] = useState(0);
+  const [buffer, setBuffer] = useState("");
+  const [time, setTime] = useState(0)
+
+  function handleSubbmit(event : React.FormEvent<HTMLFormElement>){
+    event.preventDefault();
+
+    if (buffer === word) {
+      setWord(words[(Math.random()* words.length )| 0]);
+      setCharacterCount((characterCount)=> characterCount + word.length);
+    }
+    setBuffer('')
+  };
+
+  useEffect(() => {
+  if (time !== 0){
+    const id = setInterval(()=>{
+      setTime((time) => time - 1)
+    },1000);
+
+    return () => clearInterval(id);
+  }
+  }, [time])
+  
+
+
+
+  return (
+    <Stack
+    direction="column"
+    spacing={2}
+    alignItems='center'>
+      <h2>Chacarters typed: {characterCount}</h2>
+      <h3>Remaining time: {time}</h3>
+      {Boolean(time) && <h1>{word}</h1>}
+      {time !== 0 ? (
+        <form onSubmit={handleSubbmit}>
+           <TextField id="filled-basic" label="Filled" variant="filled" 
+              value={buffer} onChange={(e)=> setBuffer(e.target.value)}
+            />
+            <Button type='submit' variant="contained">Submit</Button>
+          </form>
+        ) : (
+          <Button style={{margin:'auto'}} onClick={()=>setTime(60)} variant="contained">Play</Button>
+      )}
+    </Stack>
+  )
+}
+
+export default WordsPerMinute
