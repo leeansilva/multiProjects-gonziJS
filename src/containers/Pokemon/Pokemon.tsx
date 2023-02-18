@@ -1,6 +1,5 @@
 import { Button, TextField } from '@mui/material';
 import React from 'react'
-
 const POKEMON = [
   "pikachu","charmander","squirtle","bulbasaur","mewtwo","mew","eevee","jigglypuff","snorlax","gyarados","dragonite","arcanine","gengar","vaporeon","flareon","jolteon","articuno","zapdos","moltres","golem","onix","magikarp","gastly","haunter","kadabra","abra","alakazam","rattata","raticate","clefairy","clefable","ninetales","vulpix","ponyta","rapidash","kangaskhan","mr. mime","tauros","ditto","pidgey","pidgeotto","pidgeot","spearow","fearow","bellsprout","weepinbell","victreebel","geodude","graveler","goldeen"
 ]

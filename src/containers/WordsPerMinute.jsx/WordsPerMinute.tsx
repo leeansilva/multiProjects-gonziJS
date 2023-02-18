@@ -15,7 +15,7 @@ const WordsPerMinute = () => {
 
   function handleSubbmit(event : React.FormEvent<HTMLFormElement>){
     event.preventDefault();
-
+    
     if (buffer === word) {
       setWord(words[(Math.random()* words.length )| 0]);
       setCharacterCount((characterCount)=> characterCount + word.length);
