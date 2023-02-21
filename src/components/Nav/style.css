@@ -1,0 +1,36 @@
+.img{
+    width: 60px;
+    height: 60px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(232, 232, 232);
+    border-radius: 50%;
+}
+
+.img:hover{
+    filter: invert(1);
+    transition: 0.25s;
+    cursor: pointer;
+}
+
+
+/* ---------NAV-------------- */
+
+.container{
+    background-color: rgb(17, 17, 17);
+    display: flex;
+    justify-content: center;
+}
+
+.navxs{
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+}
+.navmd{
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+}

@@ -1,18 +1,23 @@
 import { useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
+import Home from './containers/Home/Home'
 import Memotest from './containers/Memotest/Memotest'
 import Pokemon from './containers/Pokemon/Pokemon'
 import WordsPerMinute from './containers/WordsPerMinute.jsx/WordsPerMinute'
+import Games from './pages/Games/Games'
 
 function App() {
-  const [count, setCount] = useState(0)
+
 
   return (
-    <Routes>
-      <Route element={<Memotest/>} path='/memotest'/>
-      <Route element={<Pokemon/>} path='/pokemon'/>
-      <Route element={<WordsPerMinute/>} path='/wpm'/>
-    </Routes>
+    
+      <Routes>
+        <Route element={<Home/> } path='/'/>
+        <Route element={<Games/>} path='/games'/>
+        <Route element={<Memotest/>} path='games/memotest'/>
+        <Route element={<WordsPerMinute/>} path='games/wpm'/>
+      </Routes>
+    
   )
 }
 
