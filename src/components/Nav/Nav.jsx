@@ -28,9 +28,8 @@ function ResponsiveAppBar() {
 
 
   const handleCloseNavMenu = (e) => {
-    //setAnchorElNav(null);
+    setAnchorElNav(null);
     const current = e.target.id
-    console.log(current);
     if (current === pages[0]){
         navigate('/games')
     } else if(current === pages[1]){
@@ -94,13 +93,16 @@ function ResponsiveAppBar() {
           </Box>
           
           
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }} className="navmd">
+          <Box sx={{ flexGrow: 1, padding:'0', display: { xs: 'none', md: 'flex' }, }} className="navmd">
             {pages.map((page) => (
               <Button
                 key={page}
                 id={page}
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
+                sx={{ my: 2, color: 'white', display: 'flex', '&:hover': {
+                  backgroundColor: 'black',
+                  transition: '0.3s'
+                }, margin:'0 20px', padding:'20px', width:'100%', borderRadius:'0' }}
               >
                 {page}
               </Button>

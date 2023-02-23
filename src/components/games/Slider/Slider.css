@@ -1,0 +1,46 @@
+.carousel_container {
+    width: 90%;
+    height: 80%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    position: sticky;
+    margin-top: -20px;
+}
+
+.carousel__imageContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.c__button{
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.c__Buttonleft{
+    padding-left: 8px; 
+}
+
+.c__buttonright{
+    padding: 0 2px 0 2px;
+}
+
+.c__button:hover{
+    background-color: black;
+    transition: 0.2s;
+}
+
+.avatarSlider{
+    box-shadow: -3px 20px 30px -25px rgb(255, 57, 57);
+    -webkit-box-shadow: -3px 20px 30px -23px rgb(255, 57, 57);
+    -moz-box-shadow: -3px 20px 30px -23px rgb(255, 57, 57);
+}
