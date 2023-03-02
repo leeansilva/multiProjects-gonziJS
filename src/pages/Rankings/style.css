@@ -1,22 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
 .ranking_row{
     display: flex;
     flex-wrap: nowrap;
     width: 100%;
     justify-content: space-between;
     padding: 0 15px;
+    font-family: 'Press Start 2P', cursive;
+    
 }
 
 .ranking_img{
     width: 30px;
     border: 1px solid rgb(51, 51, 51);
     margin: 0;
+    font-family: 'Press Start 2P', cursive;
+    
 }
 
 .ranking__num{
+    font-family: 'Press Start 2P', cursive;
     display: block;
    width: 100%;
    border: 1px solid rgb(51, 51, 51);
    text-align: center;
+   
 }
 
 .ranking__name{
@@ -24,12 +32,14 @@
     width: 100%;
     border: 1px solid rgb(51, 51, 51);
     text-align: center;
+    font-family: 'Press Start 2P', cursive;
 }
 .ranking__points{
     display: block;
     width: 100%;
     border: 1px solid rgb(51, 51, 51);
     text-align: center;
+    font-family: 'Press Start 2P', cursive;
 }
 
 .ranking__country{
@@ -37,6 +47,7 @@
     width: 100%;
     border: 1px solid rgb(51, 51, 51);
     text-align: center;
+    font-family: 'Press Start 2P', cursive;
 }
 
 .generated{
@@ -47,4 +58,17 @@
     cursor: pointer;
     background-color: rgb(167, 167, 168);
     color: rgb(24, 25, 25);
+}
+
+#id0{
+    background-color: red;
+}
+
+#id1{
+    background-color: aquamarine;
+    color: #0f0f0f;
+}
+
+#id2{
+    background-color: blueviolet;
 }

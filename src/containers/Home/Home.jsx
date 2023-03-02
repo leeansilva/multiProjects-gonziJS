@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './style.css'
 import 'animate.css';
-import { Button } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
 import GoogleLog from '../../components/login/Google/GoogleLog';
 
@@ -29,7 +28,7 @@ const Home = () => {
         </div>
     }
 
-    {user?.displayName && 
+    {user?.photoURL && 
     <div className='animate__animated animate__fadeIn container_user'>
      <div className='container_user__info'>
         <Avatar 
@@ -43,6 +42,7 @@ const Home = () => {
      </div>
 
       <h2 className='container_user__pos'>Positon: 1</h2>
+      <h2 className='container_user__pos'>Score: </h2>
 
      <div className='container_user__stats'>
         <h2>Stats:</h2>
