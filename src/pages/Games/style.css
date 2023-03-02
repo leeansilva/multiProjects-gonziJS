@@ -4,12 +4,15 @@ cursor: pointer;
 
 .container_card{
     margin-top: 20px;
+    margin: 0 5px;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
     flex-wrap: wrap;
-    width: 70%;
+    width: 1fr;
 }
 
 img{
     border-radius: 50%;
 }
+
+/* hacer responsive, consejo a container card dale menos width */

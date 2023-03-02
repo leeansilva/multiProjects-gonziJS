@@ -1,13 +1,10 @@
 import React, { useState } from 'react'
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
-
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
-
 
 import './Slider.css'
 import 'animate.css';
@@ -79,7 +76,6 @@ const Slider = () => {
                     alt={game.title}
                     image={game.image}
                     />
-                    
                     <CardActions>
                         <Button size="small" sx={{backgroundColor:'green',color:'aliceblue'}} onClick={()=>{ setPlayGame(game.link) }}>GO!</Button>
                     </CardActions>

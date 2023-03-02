@@ -23,6 +23,12 @@ const games =[
       link:'/games/wpm/',
       image:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTh0LDtqmI-4w9G--0PPrfcx80KneQhvtPZog&usqp=CAU',
     },
+    {
+        title:'Pacman',
+        description:'Is Pacman dude, play it!',
+        link:'/games/wpm/',
+        image:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTh0LDtqmI-4w9G--0PPrfcx80KneQhvtPZog&usqp=CAU',
+      },
 ]
 
 export { games }

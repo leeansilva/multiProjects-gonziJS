@@ -1,0 +1,50 @@
+.ranking_row{
+    display: flex;
+    flex-wrap: nowrap;
+    width: 100%;
+    justify-content: space-between;
+    padding: 0 15px;
+}
+
+.ranking_img{
+    width: 30px;
+    border: 1px solid rgb(51, 51, 51);
+    margin: 0;
+}
+
+.ranking__num{
+    display: block;
+   width: 100%;
+   border: 1px solid rgb(51, 51, 51);
+   text-align: center;
+}
+
+.ranking__name{
+    display: block;
+    width: 100%;
+    border: 1px solid rgb(51, 51, 51);
+    text-align: center;
+}
+.ranking__points{
+    display: block;
+    width: 100%;
+    border: 1px solid rgb(51, 51, 51);
+    text-align: center;
+}
+
+.ranking__country{
+    display: block;
+    width: 100%;
+    border: 1px solid rgb(51, 51, 51);
+    text-align: center;
+}
+
+.generated{
+    background-color: #0f0f0f;
+}
+
+.generated:hover{
+    cursor: pointer;
+    background-color: rgb(167, 167, 168);
+    color: rgb(24, 25, 25);
+}
