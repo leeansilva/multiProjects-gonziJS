@@ -1,18 +1,25 @@
 import { Stack } from '@mui/system'
 import React from 'react'
 import './style.css'
-import { users } from '../../data/users/'
+
+import { UseDataContext } from '../../context/dataContext';
 
 
-users.sort((x, y)=>  y.points - x.points);
 
 const Rankings = () => {
+  const { USERS } = UseDataContext();
+  //copy users of LOCALSTORAGE.
+  const users = [...USERS]
+
+  //order copy
+  users.sort((x, y)=>  y.points - x.points);
+
   return (
     <>
 
       <Stack spacing={1}>
         <h1 style={{margin: '0 auto',fontFamily: "'Press Start 2P', cursive"}}>Top 20</h1>
-        
+    
         <div className="ranking_row">
           <h4 className='ranking_img'>PH</h4>
           <h4 className='ranking__num'>RANK</h4>

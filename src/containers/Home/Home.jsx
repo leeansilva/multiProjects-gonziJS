@@ -7,15 +7,11 @@ import GoogleLog from '../../components/login/Google/GoogleLog';
 import { UseDataContext } from '../../context/dataContext';
 
 const Home = () => {
+
   const [start,setStart] = useState(false)
-
-  const { user } = UseDataContext()
-
-  useEffect(() => {
-  console.log(user);
-    
-    }, [user])
   
+  const { user, addUSER, LOGOut} = UseDataContext()
+
 
   return (
     <>
@@ -39,6 +35,7 @@ const Home = () => {
         />
         <h1 className='text__user'>{user.displayName}</h1>
         <GoogleLog />
+
      </div>
 
       <h2 className='container_user__pos'>Positon: 1</h2>
