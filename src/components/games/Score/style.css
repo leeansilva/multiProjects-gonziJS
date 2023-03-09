@@ -1,0 +1,7 @@
+.Score_container{
+    width: 350px;
+    height: 90vh;
+    background-color: red;
+    position: relative;
+    right: 0;
+}

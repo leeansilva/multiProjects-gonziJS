@@ -7,12 +7,16 @@ import { users } from "../data/users";
 const DataContext = React.createContext();
 
 function DataProvider ({ children }) {
-    
-    const [user, setUser] = useState({});
-    const [LOGOut, setLOGOut] = useState(false)
+    //accede,mos a los items para obtener los puntos del usuario.
+    const localStorageItem = localStorage.getItem('USERS_V1');
+    let parsedItem = JSON.parse(localStorageItem);
 
-    //LOCAL STORAGE
+    //Estados
+    const [user, setUser] = useState({});
+    const [LOGOut, setLOGOut] = useState(false);
+    const [points,setPoints] = useState(0)
     
+    //LOCAL STORAGE
     const {
         item: USERS, 
         saveItem: saveUSER,
@@ -20,18 +24,35 @@ function DataProvider ({ children }) {
         error
     } = useLocalStorage('USERS_V1',users);
     
+   //Use effect para que se seteen los puntos con la info del usuario. Mapeamos cada usuario.
+   useEffect(() => {
+    parsedItem.map((e)=>{
+        if(e.nickName){
+           setPoints(e.points)
+        }
+       })
+   }, [])
+   
     const addUSER = ( id, nickName, points, image,country ) => {
         const newUSER = [...USERS];   
         newUSER.push({
-          id: id,
-          nickName: nickName,
-          points,
-          image,
-          country
+            id: id,
+            nickName: nickName,
+            points : points,
+            image,
+            country
         });
         saveUSER(newUSER);
-      }
-      
+    }
+    
+    //Edit User lo llamamos en cada juego para setear los puntos del usuario en localStorage
+    const editUSER = (id,newPoints) =>{
+        const USERindex = USERS.findIndex(user => user.id === id)
+        const newUSER  = [...USERS];
+        newUSER[USERindex].points = newPoints;
+        saveUSER(newUSER);
+    }
+    
     ///GOOGLE SIGNIN
     const googleSignIn = ()=>{
         const provider = new GoogleAuthProvider();
@@ -51,7 +72,19 @@ function DataProvider ({ children }) {
     }, []);
     ///FIN GOOGLE SIGNIN
 
-    const context = { googleSignIn, logOut, user,addUSER, LOGOut,setLOGOut,USERS }
+    const context = { 
+        googleSignIn, 
+        logOut, 
+        user,
+        addUSER, 
+        LOGOut,
+        setLOGOut,
+        USERS,
+        points,
+        setPoints,
+        editUSER,
+        
+        }
     return (
         <DataContext.Provider value ={ context }>
             { children }

@@ -3,16 +3,14 @@ import './style.css'
 import 'animate.css';
 import Avatar from '@mui/material/Avatar';
 import GoogleLog from '../../components/login/Google/GoogleLog';
-
 import { UseDataContext } from '../../context/dataContext';
 
+//npm run dev -- --host
+
 const Home = () => {
-
-  const [start,setStart] = useState(false)
   
-  const { user, addUSER, LOGOut} = UseDataContext()
-
-
+  const { user } = UseDataContext()
+  
   return (
     <>
     {!user?.displayName &&

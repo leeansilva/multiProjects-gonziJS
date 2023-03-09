@@ -1,5 +1,8 @@
+
 import { Grid } from '@mui/material'
 import React, { useEffect, useState } from 'react'
+import { UseDataContext } from '../../../context/dataContext';
+import { Score } from  '../Score/Score'
 import './style.css'
 
 const IMAGES = [
@@ -20,8 +23,10 @@ const IMAGES = [
 
 const Memotest = () => {
 
+    
     const [guessed, setGessed] = useState([])
     const [selected, setSelected] = useState([])
+    const { points, setPoints } = UseDataContext()
 
     //Escuchamos a selected:
     useEffect(() => {
@@ -42,19 +47,22 @@ const Memotest = () => {
 
     useEffect(()=>{
         if (guessed.length === IMAGES.length){
-            alert("you win");
+            alert("WINNER");
+            setPoints(300);
+            //play again?
             location.reload();
         }
     },[guessed])
     
 
   return (
-    <Grid container spacing={2}  className='main'>
+    <div className='memotest_container'>
+        <Grid container spacing={1} sx={{width: '80%',height: '50%', margin:'45px 80px'}}>
             
             {IMAGES.map((image, index)=>  {
                 const [ , url] = image.split("|");
                 return (
-                    <Grid item={true} xs={4} sm={2} xl={5} className='item' key={image}
+                    <Grid item={true} xs={4} sm={2} xl={2} className='item' key={image}
 
                     //esto agarra los selected que tenga y le concatena la imagen -->
                     onClick={()=> selected.length < 2 && setSelected((selected) => selected.concat(image))} > 
@@ -71,6 +79,11 @@ const Memotest = () => {
             })}
 
     </Grid>
+
+    <Score >
+
+    </Score>
+    </div>
   )
 }
 
