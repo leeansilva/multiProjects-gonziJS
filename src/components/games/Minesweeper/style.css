@@ -1,0 +1,64 @@
+.board {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(30px, 1fr));
+    grid-gap: 2px;
+    margin: 20px auto;
+    width: fit-content;
+    border: 1px solid black;
+  }
+  
+  .cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: gray;
+  }
+  
+  .cell:hover {
+    background-color: #d9d9d9;
+  }
+  
+  .cell:active {
+    background-color: #bfbfbf;
+  }
+  
+  /* Estilos para el valor de las celdas */
+  .cell:not(:empty) {
+    color: black;
+  }
+  
+  .cell[data-value="1"] {
+    color: blue;
+  }
+  
+  .cell[data-value="2"] {
+    color: green;
+  }
+  
+  .cell[data-value="3"] {
+    color: red;
+  }
+  
+  .cell[data-value="4"] {
+    color: purple;
+  }
+  
+  .cell[data-value="5"] {
+    color: maroon;
+  }
+  
+  .cell[data-value="6"] {
+    color: turquoise;
+  }
+  
+  .cell[data-value="7"] {
+    color: black;
+  }
+  
+  .cell[data-value="8"] {
+    color: gray;
+  }
+  

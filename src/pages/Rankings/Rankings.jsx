@@ -1,5 +1,5 @@
 import { Stack } from '@mui/system'
-import React from 'react'
+import React, { useEffect } from 'react'
 import './style.css'
 
 import { UseDataContext } from '../../context/dataContext';
@@ -7,7 +7,7 @@ import { UseDataContext } from '../../context/dataContext';
 
 
 const Rankings = () => {
-  const { USERS } = UseDataContext();
+  const { USERS,position,setPosition } = UseDataContext();
   //copy users of LOCALSTORAGE.
   const users = [...USERS]
 

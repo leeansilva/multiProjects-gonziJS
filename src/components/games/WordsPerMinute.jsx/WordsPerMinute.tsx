@@ -29,10 +29,14 @@ const WordsPerMinute = () => {
     if (buffer === word) {
       setWord(words[(Math.random()* words.length )| 0]);
       setCharacterCount((characterCount)=> characterCount + word.length);
-      setPoints(points + 25)
+      if(user.displayName){
+        setPoints(points + 25)
+      }
     }
     else if(buffer !== word){
-      setPoints(points - 25)
+      if(user.displayName){
+        setPoints(points - 25)
+      }
     }
     setBuffer('')
   };

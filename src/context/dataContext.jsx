@@ -14,7 +14,9 @@ function DataProvider ({ children }) {
     //Estados
     const [user, setUser] = useState({});
     const [LOGOut, setLOGOut] = useState(false);
-    const [points,setPoints] = useState(0)
+    const [points,setPoints] = useState(0);
+    const [position,setPosition] = useState([])
+
     
     //LOCAL STORAGE
     const {
@@ -26,12 +28,24 @@ function DataProvider ({ children }) {
     
    //Use effect para que se seteen los puntos con la info del usuario. Mapeamos cada usuario.
    useEffect(() => {
-    parsedItem.map((e)=>{
-        if(e.nickName){
-           setPoints(e.points)
-        }
-       })
+    if (points > 0 && user.length > 1){
+        parsedItem.map((e)=>{
+            if(e.nickName){
+               setPoints(e.points)
+            }
+           })
+    }
    }, [])
+
+   console.log(points);
+
+   //use Effect para setear la posicion a tiempo real
+   useEffect(() => {
+    const users = [...parsedItem];
+    users.sort((x, y)=>  y.points - x.points);
+    setPosition(users)
+   }, [points])
+   
    
     const addUSER = ( id, nickName, points, image,country ) => {
         const newUSER = [...USERS];   
@@ -83,6 +97,8 @@ function DataProvider ({ children }) {
         points,
         setPoints,
         editUSER,
+        position,
+        setPosition
         
         }
     return (
