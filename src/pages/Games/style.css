@@ -8,7 +8,7 @@ cursor: pointer;
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
-    width: 1fr;
+    width: 76%;
 }
 
 img{

@@ -9,6 +9,8 @@ import VideogameAssetIcon from '@mui/icons-material/VideogameAsset';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { games } from '../../data/games';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import { Button, Card, CardActions, CardContent, CardMedia, Typography } from '@mui/material';
 
 //npm run dev -- --host
 
@@ -18,11 +20,16 @@ const Home = () => {
   const [country, setCountry] = useState('');
   const [emptyLikes, setEmptyLikes] = useState(false);
   const [loading, setLoading] = useState(true)
+
+
   
-  
-  const { user,points,position } = UseDataContext();
+  const { user,points,position,parsedLikes, likeGames } = UseDataContext();
   const localStorageItem = localStorage.getItem('USERS_V1');
   let parsedItem = JSON.parse(localStorageItem);
+
+  // parsedItem.map((e)=>{
+  //   console.log(e);
+  // })
 
   const findPos =(id) =>{
     let posi = position.findIndex(user => user.id === id)
@@ -87,11 +94,17 @@ const Home = () => {
      </div>
 
       <div className='position__conteiner'>
-        <h2 className='container_user__pos'>Positon:    { posi + 1 }</h2>
-        <h2 className='container_user__pos'>Score:    { points} </h2>
+        <div style={{display:'flex', justifyContent:'center',alignItems:'center'}}>
+          <h2 className='container_user__pos'>Positon: </h2>
+          <h2 className='span'>{ posi + 1 }</h2>
+        </div>
+        <div style={{display:'flex', justifyContent:'center',alignItems:'center'}}>
+          <h2 className='container_user__pos'>Score: </h2>
+          <h2 className='span'> { points}</h2>
+        </div>
       </div>
 
-    <div className='aside__user'>
+    <div className='aside__user' >
       <div className='container_user__stats'>
           <div className='gamePlayed'>
             <h2>Stats:</h2>
@@ -107,23 +120,53 @@ const Home = () => {
 
             <div style={{display:'flex',width:'165px', justifyContent:'space-around'}}>
               <FavoriteIcon/>
-              <h4>Games you liked:</h4>
+              <h4>Games you liked:{likeGames.length}</h4>
             </div>
           </div>
       </div>
+
         {
-        emptyLikes === false ? 
-        games.map((game) =>(
-          game.like === true  && 
-          <div className='likedGames__container'>hola</div>
-          )
-        )
-        :
-        <div style={{display:'flex', flexDirection:'column', }} className='likedGames__container'>
-          <h2 className='likedGames__container'> Here will appear the games you like.</h2>
-          <h4 className='likedGames__container'> Play some games and if you like them, gives them a thumb up!</h4>
-        </div>
-        }
+        likeGames.length === 0 ? (
+          <div style={{display:'flex', flexDirection:'column'}} className='likedGames__container'>
+            <FavoriteBorderIcon/>
+            <h2 className='likedGames__container'>The games you like will appear here.</h2>
+            <h4 className='likedGames__container h4'>Play some games and if you like them, give it a like!</h4>
+          </div>
+          ) : (
+          likeGames.map((title) => {
+            const gamesLiked = [games.find(game => game.title === title)]
+      
+            return (
+              <Card key={gamesLiked[0].title} id={gamesLiked[0].title} sx={{ display : 'flex',flexDirection: 'column',justifyContent:'space-evenly',width: '150px', height: '240px', backgroundColor: 'rgb(17, 17, 17)', color:'aliceblue',margin:'9px',
+              '&:hover': {
+                backgroundColor: 'black',
+                opacity: '80%',
+                transition: '0.3s'
+              }}} className='card'>
+    
+                <CardMedia 
+                    component="img"
+                    alt={gamesLiked[0].title}
+                    height="120"
+                    image={gamesLiked[0].image}
+                    sx={{'&:hover':{padding:'10px', transition:'0.3s'},width:'120px',height:'100px'}}
+                />
+    
+                <CardContent>
+                  <Typography gutterBottom variant="h5" component="div">
+                      {gamesLiked[0].title}
+                  </Typography>
+                </CardContent>
+    
+                <CardActions>
+                  <Button size="small" sx={{backgroundColor:'green',color:'aliceblue'}} >Play</Button>
+                </CardActions>
+    
+              </Card>
+            );
+          })
+        )}
+
       </div>
 
     </div>

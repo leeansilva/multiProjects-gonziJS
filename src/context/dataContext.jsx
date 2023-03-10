@@ -3,6 +3,7 @@ import { GoogleAuthProvider,signInWithPopup,signOut,onAuthStateChanged } from "f
 import { auth } from "../data/firebase";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 import { users } from "../data/users";
+import { games } from "../data/games";
 
 const DataContext = React.createContext();
 
@@ -11,11 +12,15 @@ function DataProvider ({ children }) {
     const localStorageItem = localStorage.getItem('USERS_V1');
     let parsedItem = JSON.parse(localStorageItem);
 
+    const localStorageLikes = localStorage.getItem('gamesLiked');
+    let parsedLikes = JSON.parse(localStorageLikes)
+
     //Estados
     const [user, setUser] = useState({});
     const [LOGOut, setLOGOut] = useState(false);
     const [points,setPoints] = useState(0);
     const [position,setPosition] = useState([])
+    const [likeGames, setLikeGames] = useState([])
 
     
     //LOCAL STORAGE
@@ -25,23 +30,24 @@ function DataProvider ({ children }) {
         loading,
         error
     } = useLocalStorage('USERS_V1',users);
+
+    
     
    //Use effect para que se seteen los puntos con la info del usuario. Mapeamos cada usuario.
    useEffect(() => {
-    if (points > 0 && user.length > 1){
+    if (points > 0 && user.length > 1 || localStorageLikes){
         parsedItem.map((e)=>{
             if(e.nickName){
-               setPoints(e.points)
+               setPoints(e.points);
+               setLikeGames(parsedLikes)
             }
            })
     }
    }, [])
 
-   console.log(points);
-
    //use Effect para setear la posicion a tiempo real
    useEffect(() => {
-    const users = [...parsedItem];
+    const users = [...USERS];
     users.sort((x, y)=>  y.points - x.points);
     setPosition(users)
    }, [points])
@@ -66,6 +72,11 @@ function DataProvider ({ children }) {
         newUSER[USERindex].points = newPoints;
         saveUSER(newUSER);
     }
+
+    const addLikes = () => {
+        const updatedLocalStorage = JSON.stringify(  likeGames );
+        localStorage.setItem('gamesLiked', updatedLocalStorage);
+      }
     
     ///GOOGLE SIGNIN
     const googleSignIn = ()=>{
@@ -98,7 +109,11 @@ function DataProvider ({ children }) {
         setPoints,
         editUSER,
         position,
-        setPosition
+        setPosition,
+        likeGames,
+        setLikeGames,
+        addLikes,
+        parsedLikes
         
         }
     return (
