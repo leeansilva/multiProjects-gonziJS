@@ -10,8 +10,8 @@ import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { games } from '../../data/games';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import { Button, Card, CardActions, CardContent, CardMedia, Typography } from '@mui/material';
-
+import { Button, Card, CardActions, CardContent, CardMedia, Typography, Snackbar } from '@mui/material';
+import MuiAlert from '@mui/material/Alert';
 //npm run dev -- --host
 
 const Home = () => {
@@ -19,18 +19,31 @@ const Home = () => {
   const [posi,setPosi] = useState(0);
   const [country, setCountry] = useState('');
   const [emptyLikes, setEmptyLikes] = useState(false);
+  const[open,setOpen] = useState(false)
+
   const [loading, setLoading] = useState(true)
 
+  const { user,points,position, likeGames,USERS,LOGOut } = UseDataContext();
 
+  //alert de usuario logeado.
+  const Alert = React.forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={7} ref={ref} variant="filled" {...props} />;
+  });
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpen(false);
+  };
+
+
+  useEffect(() => {
+    LOGOut === false && setOpen(true);
+    LOGOut === true && open === true && setOpen(false)
+  }, [LOGOut])
   
-  const { user,points,position,parsedLikes, likeGames } = UseDataContext();
-  const localStorageItem = localStorage.getItem('USERS_V1');
-  let parsedItem = JSON.parse(localStorageItem);
-
-  // parsedItem.map((e)=>{
-  //   console.log(e);
-  // })
-
+  //Funcion para detectar posicion y setearla.
   const findPos =(id) =>{
     let posi = position.findIndex(user => user.id === id)
     position.map((e) =>{
@@ -39,23 +52,23 @@ const Home = () => {
     setPosi(posi)
   }
 
- 
   //apenas se renderiza el componente seteamos la posi respectiva al usuario
   useEffect(() => {
    
-    parsedItem.map((e)=>{
+    USERS.map((e)=>{
     if(e.nickName === user?.displayName){
       findPos(e.id)
     }
     else return
-    },[])
+    },[points])
       
     games.map((game)=>{
     game.like === false ? setEmptyLikes(true) : setEmptyLikes(false)
     })
 
   },[])
-  
+
+
   
   return (
     <>
@@ -168,6 +181,12 @@ const Home = () => {
         )}
 
       </div>
+
+      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+        <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+          Hi {user.displayName}
+        </Alert>
+      </Snackbar>
 
     </div>
                 

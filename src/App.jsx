@@ -9,6 +9,7 @@ import { Modal } from 'bootstrap'
 import Minesweeper from './components/games/Minesweeper/Minesweeper.jsx'
 import Hangman from './components/games/Hangman/Hangman'
 import Pacman from './components/games/Pacman/Pacman'
+import ContactMe from './pages/Contact me/ContactMe'
 
 
 function App() {
@@ -29,11 +30,9 @@ function App() {
           <Route element={<Hangman/>} path='games/hangman'/>
           <Route element={<Pacman/>} path='games/pacman'/>
         
-        
-        
-
-
         <Route element={<Rankings/>} path='/rankings'/>
+        <Route element={<ContactMe/>} path='/contact'/>
+        
       </Routes>
 
     </DataProvider>

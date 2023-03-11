@@ -1,0 +1,39 @@
+.form__container{
+    display: flex;
+    margin: 20px auto;
+    flex-direction: column;
+    width: 60%;
+    justify-content: center;
+    background-color: rgb(16, 16, 16);
+    padding: 50px;
+    gap: 10px;
+    border-radius: 11px;
+    margin-top: 10px;
+ 
+}
+
+.contactUs__container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(35, 32, 32);
+}
+
+hr{
+    width: 100%;
+}
+
+.info__us{
+    margin: 2px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 150px;
+    width: 70%;
+    text-align: center;
+    gap: 10px;
+    color: rgb(120, 120, 120);
+}
+

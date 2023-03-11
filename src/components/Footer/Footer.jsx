@@ -16,7 +16,7 @@ const Footer = () => {
             <li><a target='_blank' href='https://github.com/leeansilva'><GitHubIcon/></a></li>
         </ul>
 
-    <h6>Copyright © Todos los izquierdos reservados</h6>
+    <h6>Copyright © All left reserved</h6>
 
     </footer>
   )

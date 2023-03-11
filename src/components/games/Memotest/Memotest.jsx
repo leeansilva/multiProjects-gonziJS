@@ -2,7 +2,7 @@
 import { Grid } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { UseDataContext } from '../../../context/dataContext';
-import { Score } from  '../Score/Score'
+
 import './style.css'
 
 const IMAGES = [
@@ -26,7 +26,7 @@ const Memotest = () => {
     
     const [guessed, setGessed] = useState([])
     const [selected, setSelected] = useState([])
-    const { points, setPoints } = UseDataContext()
+    const { points, setPoints,parsedItem,user,editUSER } = UseDataContext()
 
     //Escuchamos a selected:
     useEffect(() => {
@@ -48,11 +48,17 @@ const Memotest = () => {
     useEffect(()=>{
         if (guessed.length === IMAGES.length){
             alert("WINNER");
-            setPoints(300);
+            setPoints(points + 500);
             //play again?
-            location.reload();
         }
     },[guessed])
+
+    useEffect(() => {
+        if(user?.displayName){
+            editUSER(user.metadata.createdAt, points)
+            }
+    }, [points])
+    
     
 
   return (
@@ -79,10 +85,6 @@ const Memotest = () => {
             })}
 
     </Grid>
-
-    <Score >
-
-    </Score>
     </div>
   )
 }

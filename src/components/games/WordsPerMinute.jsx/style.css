@@ -1,0 +1,6 @@
+.formWPM__container{
+    display: flex;
+    flex-direction: column;
+    height: 64.6vh;
+    background-color: red;
+}

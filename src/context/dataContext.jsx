@@ -3,7 +3,6 @@ import { GoogleAuthProvider,signInWithPopup,signOut,onAuthStateChanged } from "f
 import { auth } from "../data/firebase";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 import { users } from "../data/users";
-import { games } from "../data/games";
 
 const DataContext = React.createContext();
 
@@ -47,7 +46,7 @@ function DataProvider ({ children }) {
 
    //use Effect para setear la posicion a tiempo real
    useEffect(() => {
-    const users = [...USERS];
+    const users = [...parsedItem];
     users.sort((x, y)=>  y.points - x.points);
     setPosition(users)
    }, [points])
@@ -113,7 +112,8 @@ function DataProvider ({ children }) {
         likeGames,
         setLikeGames,
         addLikes,
-        parsedLikes
+        parsedLikes,
+        parsedItem
         
         }
     return (

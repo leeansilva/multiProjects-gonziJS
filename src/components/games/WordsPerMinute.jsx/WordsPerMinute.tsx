@@ -2,6 +2,7 @@ import { Button ,TextField } from '@mui/material';
 import { Stack } from '@mui/system';
 import React, { useEffect, useState } from 'react'
 import { UseDataContext } from '../../../context/dataContext';
+import './style.css'
 
 const words = [
   "love", "covid", "2021", "life", "happy", "vaccine", "music", "new", "today", "work", "pandemic", "people", "time", "world", "good", "day", "like", "thankful", "health", "friends", "fun", "positive", "smile", "beautiful", "family", "goals", "summer", "friendship", "nature", "travel", "selfcare", "art", "faith", "blessed", "challenge", "instagood", "photooftheday", "fashion", "food", "weekend", "inspiration", "motivation", "fitness", "quote", "sun", "dog", "photography", "book", "movies"
@@ -68,11 +69,13 @@ const WordsPerMinute = () => {
     direction="column"
     spacing={2}
     alignItems='center'>
-      <h2>Chacarters typed: {characterCount}</h2>
-      <h3>Remaining time: {time}</h3>
+      <div className='formWPM__container'>
+        <h2>Chacarters typed: {characterCount}</h2>
+        <h3>Remaining time: {time}</h3>
+      </div>
       {Boolean(time) && <h1>{word}</h1>}
       {time !== 0 ? (
-        <form onSubmit={handleSubbmit}>
+        <form  onSubmit={handleSubbmit}>
            <TextField id="filled-basic" label="Filled" variant="filled" 
               value={buffer} onChange={(e)=> setBuffer(e.target.value)}
             />
