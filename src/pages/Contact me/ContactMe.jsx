@@ -1,33 +1,67 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import emailjs from '@emailjs/browser';
 import { Button, TextField } from '@mui/material';
 import './style.css'
 import EmailIcon from '@mui/icons-material/Email';
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
+
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 const ContactMe = () => {
   const form = useRef();
+
+  const [isSent, setIsSent] = useState(false);
+  const [nameValue, setNameValue] = useState('');
+  const [emailValue, setEmailValue] = useState('');
+  const [messageValue, setMessageValue] = useState('');
+  const [open, setOpen] = React.useState(false);
+
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpen(false);
+  };
 
   const sendEmail = (e) => {
     e.preventDefault();
 
     emailjs.sendForm('service_p1ngp89', 'template_coloozq', form.current, 'UiXYn0hLL3HAEmkGC')
       .then((result) => {
-          console.log(result.text);
+        console.log(result.text);
+        setIsSent(true);
+        setNameValue('');
+        setEmailValue('');
+        setMessageValue('');
+        setOpen(true);
       }, (error) => {
-          console.log(error.text);
+        console.log(error.text);
       });
   };
 
   return (
-   <div className='contactUs__container'>
-     <EmailIcon style={{marginTop:'10px',fontSize:'50px',color:'rgb(76, 76, 76)'}}/>
-     <h2 style={{marginTop:'10px'}}>Write me, I would love to hear your opinions!</h2>
-     <form className='form__container' ref={form} onSubmit={sendEmail}>
-        <TextField sx={{backgroundColor:'rgb(76, 76, 76)'}} required name='user_name' id="name" label="Name" variant="filled" />
-        <TextField sx={{backgroundColor:'rgb(76, 76, 76)'}} required type='email' name='user_email' id="outlined-basic" label="Email" variant="filled" />
-        <TextField sx={{backgroundColor:'rgb(76, 76, 76)'}} required name='message' id="outlined-basic" label="Message" variant="filled" />
-      <Button type='submit' value='Send' sx={{width:'100px',margin:'0 auto',backgroundColor:'light-blue',color:'aliceblue'}} variant="outlined">SEND</Button>
-    </form>
+    <div className='contactUs__container'>
+      {isSent && 
+      (
+       <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+        <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+          Message sent!
+        </Alert>
+        </Snackbar>
+      )
+      }
+      <EmailIcon style={{ marginTop: '10px', fontSize: '50px', color: 'rgb(76, 76, 76)' }} />
+      <h2 style={{ marginTop: '10px' }}>Write me, I would love to hear your opinions!</h2>
+      <form className='form__container' ref={form} onSubmit={sendEmail}>
+        <TextField sx={{ backgroundColor: 'rgb(76, 76, 76)' }} required name='user_name' id="name" label="Name" variant="filled" value={nameValue} onChange={(e) => setNameValue(e.target.value)} />
+        <TextField sx={{ backgroundColor: 'rgb(76, 76, 76)' }} required type='email' name='user_email' id="outlined-basic" label="Email" variant="filled" value={emailValue} onChange={(e) => setEmailValue(e.target.value)} />
+        <TextField sx={{ backgroundColor: 'rgb(76, 76, 76)' }} required name='message' id="outlined-basic" label="Message" variant="filled" value={messageValue} onChange={(e) => setMessageValue(e.target.value)} />
+        <Button type='submit' value='Send' sx={{ width: '100px', margin: '0 auto', backgroundColor: 'light-blue', color: 'aliceblue' }} variant="outlined">SEND</Button>
+      </form>
 
     <hr></hr>
 
