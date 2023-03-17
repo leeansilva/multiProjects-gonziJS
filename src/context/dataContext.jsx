@@ -4,6 +4,7 @@ import { auth } from "../data/firebase";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 import { users } from "../data/users";
 import { games } from "../data/games";
+import { Navigate, useLocation } from "react-router-dom";
 
 const DataContext = React.createContext();
 
@@ -16,13 +17,14 @@ function DataProvider ({ children }) {
     let parsedLikes = JSON.parse(localStorageLikes)
 
     //Estados
-    const [user, setUser] = useState({});
+    const [user, setUser] = useState(null);
     const [LOGOut, setLOGOut] = useState(false);
     const [points,setPoints] = useState(0);
     const [position,setPosition] = useState([])
     const [likeGames, setLikeGames] = useState([])
     const  [pointsWPM, setPointsWPM] = useState()
     const  [pointsMemo, setPointsMemo] = useState(0)
+    const [isLoading, setIsLoading] = useState(true);
 
     
     //LOCAL STORAGE
@@ -33,6 +35,7 @@ function DataProvider ({ children }) {
         error
     } = useLocalStorage('USERS_V1',users);
 
+    const existingUser = parsedItem.find(u => u.nickName === user?.displayName);
     
     
    //Use effect para que se seteen los puntos con la info del usuario. Mapeamos cada usuario.
@@ -47,6 +50,7 @@ function DataProvider ({ children }) {
               await 
               setPointsWPM(e.points.WPM);
               setPointsMemo(e.points.Memotest)
+        
               break;
             }
           }
@@ -114,12 +118,18 @@ function DataProvider ({ children }) {
     };
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-            setUser(currentUser)
-        })
+          setUser(currentUser);
+          setIsLoading(false);
+        });
         return () => {
-            unsubscribe()
-        }
-    }, []);
+          unsubscribe();
+        };
+      }, []);
+    
+      if (isLoading) {
+        // Muestra un indicador de carga mientras se carga la información del usuario
+        return <div>Loading...</div>;
+      }
     ///FIN GOOGLE SIGNIN
 
     const context = { 
@@ -141,7 +151,9 @@ function DataProvider ({ children }) {
         pointsWPM,
         setPointsWPM,
         pointsMemo,
-        setPointsMemo
+        setPointsMemo,
+        existingUser,
+        isLoading
         
         }
     return (
@@ -156,4 +168,17 @@ function UseDataContext() {
     return context;
 }
 
-export {DataProvider, UseDataContext}
+function PrivateRoutes(props) {
+    const location = useLocation();
+    const context = UseDataContext();
+    const user = context.user;
+  
+    if (!user && !context.isLoading) {
+      // Si la información del usuario no está disponible y no se está cargando, redirige al usuario a la página de inicio
+      return <Navigate to="/" state={{ from: location }} replace />;
+    }
+  
+    // Si la información del usuario está disponible o todavía se está cargando, muestra el componente de la ruta protegida
+    return props.children;
+  }
+export {DataProvider, UseDataContext, PrivateRoutes}

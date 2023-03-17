@@ -10,18 +10,24 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import { useNavigate } from 'react-router-dom';
-
 import './style.css'
+import { UseDataContext } from '../../context/dataContext';
 
-const pages = ['GAMES', 'RANKINGS', 'CONTACT ME'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 
 function ResponsiveAppBar() {
+  
+  
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const navigate = useNavigate()
+  
+ const { isLoading,user } = UseDataContext()
 
+  const pages = !isLoading &&  user?.displayName ? ['GAMES', 'RANKINGS', 'CONTACT ME','PROFILE'] : ['GAMES', 'RANKINGS', 'CONTACT ME'];
+  const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+  
+  
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -36,7 +42,9 @@ function ResponsiveAppBar() {
         navigate('/rankings')
     } else if(current === pages[2]){
         navigate('/contact')
-    }
+    } else if(current === pages[3]){
+      navigate('/profile')
+  }
   };
 
   const handleCloseUserMenu = () => {
