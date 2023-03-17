@@ -22,6 +22,7 @@ function DataProvider ({ children }) {
     const [position,setPosition] = useState([])
     const [likeGames, setLikeGames] = useState([])
     const  [pointsWPM, setPointsWPM] = useState()
+    const  [pointsMemo, setPointsMemo] = useState(0)
 
     
     //LOCAL STORAGE
@@ -42,8 +43,10 @@ function DataProvider ({ children }) {
           for (const e of parsedItem) {
             if (user?.displayName === e.nickName && e.points?.WPM !== undefined) {
               setLikeGames(parsedLikes);
-              console.log("VENGO DE DATA CONTEXT SET E.POINTS", e.points.WPM);
-              await setPointsWPM(e.points.WPM);
+              console.log("VENGO DE DATA CONTEXT SET E.POINTS", 'WPM: ',e.points.WPM, "Memotest:",e.points.Memotest);
+              await 
+              setPointsWPM(e.points.WPM);
+              setPointsMemo(e.points.Memotest)
               break;
             }
           }
@@ -136,7 +139,9 @@ function DataProvider ({ children }) {
         parsedLikes,
         parsedItem,
         pointsWPM,
-        setPointsWPM
+        setPointsWPM,
+        pointsMemo,
+        setPointsMemo
         
         }
     return (

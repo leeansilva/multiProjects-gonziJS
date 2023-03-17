@@ -259,7 +259,7 @@ const Home = () => {
                   </Typography>
                 </CardContent>
                 <CardActions>
-                  <Button size="small" onClick={()=>{ setPlayGame(gamesLiked.link) }} sx={{backgroundColor:'green',color:'aliceblue'}} >Play</Button>
+                  <Button size="small" onClick={()=>{ setPlayGame(gamesLiked[0].link) }} sx={{backgroundColor:'green',color:'aliceblue'}} >Play</Button>
                 </CardActions>
               </Card>
             );

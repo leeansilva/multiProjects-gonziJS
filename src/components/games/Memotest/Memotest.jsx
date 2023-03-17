@@ -26,13 +26,16 @@ const Memotest = () => {
     
     const [guessed, setGessed] = useState([])
     const [selected, setSelected] = useState([])
-    const { user,editUSER,USERS } = UseDataContext()
-  
+    const { user,editUSER,USERS,pointsMemo,setPointsMemo } = UseDataContext()
 
+    //Solucion al primer logeo y error de pointsMemo undefined.
+    useEffect(() => {
+        pointsMemo === undefined && setPointsMemo(0)
+        console.log('Memotest undefined entonces(Memo component):',pointsMemo);
+      }, [pointsMemo])
 
     //Escuchamos a selected:
     useEffect(() => {
-
     if(selected.length == 2) {
         if (selected[0].split("|")[1] == selected[1].split("|")[1]) { // si el primer seleccionado es igual al segundo, lo seteamos en guesse
             setGessed((guesse) => guesse.concat(selected))
@@ -42,7 +45,6 @@ const Memotest = () => {
            setSelected([]) 
         }, 1000);
     }
-      
     }, [selected])
 
     //Escuchamos a guessed
@@ -50,16 +52,16 @@ const Memotest = () => {
     useEffect(()=>{
         if (guessed.length === IMAGES.length){
             alert("WINNER");
-            setPoints(points + 500);
+            setPointsMemo(pointsMemo + 500);
             //play again?
         }
     },[guessed])
 
     useEffect(() => {
         if(user?.displayName){
-            editUSER(user.metadata.createdAt, points, 'WPM')
+            editUSER(user.metadata.createdAt, pointsMemo, 'Memotest')
             }
-    }, [points])
+    }, [pointsMemo])
     
     
 

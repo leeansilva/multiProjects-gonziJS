@@ -81,8 +81,10 @@ const Games = () => {
             </CardContent>
 
             <CardActions>
-              <Button size="small" sx={{backgroundColor:'green',color:'aliceblue'}} onClick={()=>{ setPlayGame(game.link) }}>Play</Button>
-              <Button id={game.title} onClick={ handleLike } size="small">
+              <Button size="small" sx={game.status === 'play' ? {backgroundColor:'green',color:'aliceblue'} : {backgroundColor:'purple', color:'aliceblue' }} onClick={()=>{ setPlayGame(game.link) }}>
+                {game.status}
+              </Button>
+              <Button id={game.title}  onClick={ handleLike } size="small">
                 {isLiked(game) ? <FavoriteIcon/> : <FavoriteBorderIcon/>}
               </Button>
             </CardActions>

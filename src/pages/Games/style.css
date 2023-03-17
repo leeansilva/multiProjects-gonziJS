@@ -15,4 +15,8 @@ img{
     border-radius: 50%;
 }
 
+.beta{
+    background-color: purple;
+}
+
 /* hacer responsive, consejo a container card dale menos width */
