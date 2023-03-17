@@ -1,5 +1,5 @@
 
-import { Grid } from '@mui/material'
+import { Button, Grid } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { UseDataContext } from '../../../context/dataContext';
 
@@ -24,9 +24,10 @@ const IMAGES = [
 const Memotest = () => {
 
     
-    const [guessed, setGessed] = useState([])
-    const [selected, setSelected] = useState([])
-    const { user,editUSER,USERS,pointsMemo,setPointsMemo } = UseDataContext()
+    const [guessed, setGessed] = useState([]);
+    const [selected, setSelected] = useState([]);
+    const [winner, setWinner] = useState(false);
+    const { user,editUSER,USERS,pointsMemo,setPointsMemo, isLoading } = UseDataContext()
 
     //Solucion al primer logeo y error de pointsMemo undefined.
     useEffect(() => {
@@ -51,46 +52,75 @@ const Memotest = () => {
 
     useEffect(()=>{
         if (guessed.length === IMAGES.length){
-            alert("WINNER");
+            
             setPointsMemo(pointsMemo + 500);
+            setWinner(true)
             //play again?
         }
     },[guessed])
 
     useEffect(() => {
-        if(user?.displayName){
+        if(user?.displayName && !isLoading && winner){
             editUSER(user.metadata.createdAt, pointsMemo, 'Memotest')
             }
-    }, [pointsMemo])
+    }, [winner])
+
+    const handleClick = ()=>{
+        window.location.reload()
+       
+    }
+    
     
     
 
-  return (
-    <div className='memotest_container'>
-        <Grid container spacing={1} sx={{width: '80%',height: '50%', margin:'45px 80px'}}>
-            
-            {IMAGES.map((image, index)=>  {
-                const [ , url] = image.split("|");
-                return (
-                    <Grid item={true} xs={4} sm={2} xl={2} className='item' key={image}
-
-                    //esto agarra los selected que tenga y le concatena la imagen -->
-                    onClick={()=> selected.length < 2 && setSelected((selected) => selected.concat(image))} > 
-    
-                {
-                    selected.includes(image) || guessed.includes(image) ?
-                    <img  alt='icon' src={ url } />
-                  : 
-                    <img src='https://icongr.am/fontawesome/question-circle-o.svg?size=128&color=currentColor'/>        
-                }
+    return (
+        <div className="gameMEMOTEST__container">
+          {!winner ? (
+            <>
+              <div className="pointsMemotest__container">
+                <h1>
+                  Points: <span className="pointsmemo">{pointsMemo}</span>
+                </h1>
+              </div>
+              <div className="memotest_container">
+                <Grid
+                  container
+                  spacing={1}
+                  sx={{ width: "80%", height: "50%", margin: "45px 80px" }}
+                >
+                  {IMAGES.map((image, index) => {
+                    const [, url] = image.split("|");
+                    return (
+                      <Grid
+                        item={true}
+                        xs={4}
+                        sm={2}
+                        xl={2}
+                        className="item"
+                        key={image}
+                        onClick={() =>
+                          selected.length < 2 && 
+                          setSelected((selected) => selected.concat(image))
+                        }
+                      >
+                        {selected.includes(image) || guessed.includes(image) ? (
+                          <img alt="icon" src={url} />
+                        ) : (
+                          <img src="https://icongr.am/fontawesome/question-circle-o.svg?size=128&color=currentColor" />
+                        )}
+                      </Grid>
+                    );
+                  })}
                 </Grid>
-                )
-
-            })}
-
-    </Grid>
-    </div>
-  )
-}
+              </div>
+            </>
+          ) : (
+            <div className='buttonMEMOTEST'>
+                <Button className='buttonMEMOTEST' variant='contained'  color='success' onClick={   handleClick }>Play Again?</Button>
+            </div>
+          )}
+        </div>
+      );
+}      
 
 export default Memotest

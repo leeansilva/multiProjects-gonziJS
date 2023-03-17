@@ -1,22 +1,31 @@
-.card:hover{
-cursor: pointer;
-}
-
-.container_card{
+.sticky {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background-color: #1a1a1a;
+    padding: 10px;
+  }
+  
+  .card:hover{
+    cursor: pointer;
+  }
+  
+  .container_card{
     margin-top: 20px;
     margin: 0 5px;
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
-    width: 76%;
-}
-
-img{
+    max-width: 80%;
+    height: 86vh;
+    overflow-y: auto;
+  }
+  
+  img{
     border-radius: 50%;
-}
-
-.beta{
-    background-color: purple;
-}
-
-/* hacer responsive, consejo a container card dale menos width */
+  }
+  
+  .pageGame{
+    height: 87vh;
+    overflow-y: hidden;
+  }

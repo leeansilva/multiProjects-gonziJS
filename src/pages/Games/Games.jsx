@@ -52,49 +52,80 @@ const Games = () => {
     }, [likeGames])
 
 
-  return(
-    <>
-      <div className='container_card'>
-        { games.map((game,index)=>(
-          <Card key={index} id={game.title} sx={{ display : 'flex',flexDirection: 'column',justifyContent:'space-evenly',maxWidth: 230, height: '340px', backgroundColor: 'rgb(17, 17, 17)', color:'aliceblue',margin:'9px',
-          '&:hover': {
-            backgroundColor: 'black',
-            opacity: '80%',
-            transition: '0.3s'
-          }}} className='card'>
-
-            <CardMedia 
-                component="img"
-                alt={game.title}
-                height="120"
-                image={game.image}
-                sx={{'&:hover':{padding:'10px', transition:'0.3s'}}}
-            />
-
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="div">
-                  {game.title}
-              </Typography>
-              <Typography variant="body2" color="aliceblue">
-                  {game.description}
-              </Typography>
-            </CardContent>
-
-            <CardActions>
-              <Button size="small" sx={game.status === 'play' ? {backgroundColor:'green',color:'aliceblue'} : {backgroundColor:'purple', color:'aliceblue' }} onClick={()=>{ setPlayGame(game.link) }}>
-                {game.status}
-              </Button>
-              <Button id={game.title}  onClick={ handleLike } size="small">
-                {isLiked(game) ? <FavoriteIcon/> : <FavoriteBorderIcon/>}
-              </Button>
-            </CardActions>
-
-          </Card>
-        ))}
+    return (
+      <div className="pageGame">
+        <div className="gameContainer">
+          <div className="container_card">
+            {games.map((game, index) => (
+              <Card
+                key={index}
+                id={game.title}
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-evenly",
+                  maxWidth: 230,
+                  height: "340px",
+                  backgroundColor: "rgb(17, 17, 17)",
+                  color: "aliceblue",
+                  margin: "9px",
+                  "&:hover": {
+                    backgroundColor: "black",
+                    opacity: "80%",
+                    transition: "0.3s",
+                  },
+                }}
+                className="card"
+              >
+                <CardMedia
+                  component="img"
+                  alt={game.title}
+                  height="120"
+                  image={game.image}
+                  sx={{ "&:hover": { padding: "10px", transition: "0.3s" } }}
+                />
+    
+                <CardContent>
+                  <Typography gutterBottom variant="h5" component="div">
+                    {game.title}
+                  </Typography>
+                  <Typography variant="body2" color="aliceblue">
+                    {game.description}
+                  </Typography>
+                </CardContent>
+    
+                <CardActions>
+                  <Button
+                    size="small"
+                    sx={
+                      game.status === "play"
+                        ? { backgroundColor: "green", color: "aliceblue" }
+                        : { backgroundColor: "purple", color: "aliceblue" }
+                    }
+                    onClick={() => {
+                      setPlayGame(game.link);
+                    }}
+                  >
+                    {game.status}
+                  </Button>
+                  <Button
+                    id={game.title}
+                    onClick={handleLike}
+                    size="small"
+                  >
+                    {isLiked(game) ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+                  </Button>
+                </CardActions>
+              </Card>
+            ))}
+          </div>
+        </div>
+        <div className="mostPlayedContainer">
+          <MostPlayed />
+        </div>
       </div>
-      <MostPlayed />
-    </>
-  )
+    );
+    
 }
 
 export default Games

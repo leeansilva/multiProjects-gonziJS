@@ -1,6 +1,23 @@
 .formWPM__container{
+    padding: 50px;
     display: flex;
     flex-direction: column;
-    height: 64.6vh;
-    background-color: red;
+    height: 40vh;
+    justify-content: space-around;
+    background-color: rgb(25, 23, 23);
 }
+.gameWPM__container{
+    display: flex;
+    justify-content: center;
+    height: 87%;
+    background-color: rgb(34, 33, 33);
+}
+
+.time{
+    color: yellow;
+}
+
+.tipe_container{
+    display: flex;
+}
+

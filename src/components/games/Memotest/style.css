@@ -9,10 +9,39 @@
     cursor:grab;
 }
 
+.gameMEMOTEST__container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 86.5%;
+    width: 100%;
+}
 .memotest_container{
     display: flex;
     flex-direction: row;
-    width: 100%;
-    justify-content: space-evenly;
+    border-radius: 7px;
+    width: 80%;
+    justify-content: space-around;
+    margin: 20px auto;
+    background-color: rgb(31, 31, 31);
+    align-items: center;
+}
+
+.pointsMemotest__container{
+    display: flex;
+    background-color: rgb(3, 3, 3);
+    width: 150px;
+    margin-left: 30px;
+    text-align: center;
+    justify-content: center;
+    border-radius: 10px;
+}
+
+.pointsmemo{
+    color: yellow;
+}
+
+.buttonMEMOTEST{
     margin: 0 auto;
+    
 }

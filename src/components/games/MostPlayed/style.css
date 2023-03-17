@@ -1,13 +1,14 @@
 .MostPlayed__container{
     position: fixed;
     width: 300px;
-    right: 0;
-    top: 67px;
-    height: 100vh;
+    right: 0px;
+    top: 65px;
+    height: 87vh;
     background-color: rgb(17, 17, 17);
     display: flex;
     flex-direction: column;
     align-items: center;
+    z-index: 1;
    
    
 }
