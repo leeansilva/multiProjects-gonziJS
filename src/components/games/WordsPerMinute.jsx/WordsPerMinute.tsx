@@ -15,15 +15,24 @@ const WordsPerMinute = () => {
   const [characterCount, setCharacterCount] = useState(0);
   const [buffer, setBuffer] = useState("");
   const [time, setTime] = useState(0);
+ 
 
-  const { points, setPoints,user, editUSER } = UseDataContext()
+  const { pointsWPM,setPointsWPM,user,editUSER} = UseDataContext()
   
+
   const localStorageItem: string | null = localStorage.getItem('USERS_V1');
   let parsedItem: any;
   if (localStorageItem !== null) {
     parsedItem = JSON.parse(localStorageItem);
   }
 
+
+  //Esta es la solucion que encontre al error para el undefined del primer logeo.
+  useEffect(() => {
+    pointsWPM === undefined && setPointsWPM(0)
+    console.log('wpm undefined entonces(wpm component):',pointsWPM);
+  }, [pointsWPM])
+  
   function handleSubbmit(event : React.FormEvent<HTMLFormElement>){
     event.preventDefault();
     
@@ -31,12 +40,12 @@ const WordsPerMinute = () => {
       setWord(words[(Math.random()* words.length )| 0]);
       setCharacterCount((characterCount)=> characterCount + word.length);
       if(user.displayName){
-        setPoints(points + 25)
+        setPointsWPM(pointsWPM  + 25)
       }
     }
     else if(buffer !== word){
       if(user.displayName){
-        setPoints(points - 25)
+        setPointsWPM(pointsWPM - 25)
       }
     }
     setBuffer('')
@@ -54,11 +63,11 @@ const WordsPerMinute = () => {
   }
   }, [time])
 
-  //Seteamos puntos obtenidos en localStorage cuando el time está en 0. 
+  // Seteamos puntos obtenidos en localStorage cuando el time está en 0. 
   useEffect(() => {
     parsedItem.map((e)=>{
-      if(e.nickName === user?.displayName && time === 0){
-      editUSER(user.metadata.createdAt, points)
+      if(e.nickName === user?.displayName && time === 1){
+      editUSER(user.metadata.createdAt, pointsWPM,'WPM')
       }
      })
 

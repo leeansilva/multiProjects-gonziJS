@@ -72,3 +72,17 @@
 #id2{
     background-color: blueviolet;
 }
+
+/*Container TOP/////// */
+
+.top__container{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.menuRanking__container{
+    margin-left: 26px;
+    display: flex;
+    align-items: center;
+}

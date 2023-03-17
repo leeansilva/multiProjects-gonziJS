@@ -3,6 +3,7 @@ import { GoogleAuthProvider,signInWithPopup,signOut,onAuthStateChanged } from "f
 import { auth } from "../data/firebase";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 import { users } from "../data/users";
+import { games } from "../data/games";
 
 const DataContext = React.createContext();
 
@@ -20,6 +21,7 @@ function DataProvider ({ children }) {
     const [points,setPoints] = useState(0);
     const [position,setPosition] = useState([])
     const [likeGames, setLikeGames] = useState([])
+    const  [pointsWPM, setPointsWPM] = useState()
 
     
     //LOCAL STORAGE
@@ -34,30 +36,50 @@ function DataProvider ({ children }) {
     
    //Use effect para que se seteen los puntos con la info del usuario. Mapeamos cada usuario.
    useEffect(() => {
-    if (points > 0 && user.length > 1 || localStorageLikes){
-        parsedItem.map((e)=>{
-            if(e.nickName){
-               setPoints(e.points);
-               setLikeGames(parsedLikes)
+    async function getPointsWPM() {
+      try {
+        if (points >= 0 && user?.length > 1 || localStorageLikes) {
+          for (const e of parsedItem) {
+            if (user?.displayName === e.nickName && e.points?.WPM !== undefined) {
+              setLikeGames(parsedLikes);
+              console.log("VENGO DE DATA CONTEXT SET E.POINTS", e.points.WPM);
+              await setPointsWPM(e.points.WPM);
+              break;
             }
-           })
+          }
+        }
+      } catch (error) {
+        console.error('Ocurrió un error:', error);
+      }
     }
-   }, [])
+  
+    getPointsWPM();
+  }, [user]);
 
    //use Effect para setear la posicion a tiempo real
-   useEffect(() => {
-    const users = [...parsedItem];
-    users.sort((x, y)=>  y.points - x.points);
-    setPosition(users)
-   }, [points])
    
+//    useEffect(() => {
+//     const users = parsedItem;
+//     users.sort((x, y)=>  y.points - x.points);
+//     setPosition(users)
+//    }, [points,pointsWPM])
+
+   //Funcion para crear un objeto con los juegos disponibles.
+
+    const gamesAvailables = games.reduce((acc, game) => {
+        if (game.status === "play") {
+        acc[game.title] = 0;
+        }
+        return acc;
+    }, {});
    
-    const addUSER = ( id, nickName, points, image,country ) => {
+    //Add user del localStorage
+    const addUSER = ( id, nickName, image,country ) => {
         const newUSER = [...USERS];   
         newUSER.push({
             id: id,
             nickName: nickName,
-            points : points,
+            points : gamesAvailables,
             image,
             country
         });
@@ -65,13 +87,14 @@ function DataProvider ({ children }) {
     }
     
     //Edit User lo llamamos en cada juego para setear los puntos del usuario en localStorage
-    const editUSER = (id,newPoints) =>{
+    const editUSER = (id,newPoints,game) =>{
         const USERindex = USERS.findIndex(user => user.id === id)
         const newUSER  = [...USERS];
-        newUSER[USERindex].points = newPoints;
-        saveUSER(newUSER);
+        newUSER[USERindex].points[game] = newPoints;
+        saveUSER(newUSER)
     }
 
+    //Add Likes del local Storage
     const addLikes = () => {
         const updatedLocalStorage = JSON.stringify(  likeGames );
         localStorage.setItem('gamesLiked', updatedLocalStorage);
@@ -104,8 +127,6 @@ function DataProvider ({ children }) {
         LOGOut,
         setLOGOut,
         USERS,
-        points,
-        setPoints,
         editUSER,
         position,
         setPosition,
@@ -113,7 +134,9 @@ function DataProvider ({ children }) {
         setLikeGames,
         addLikes,
         parsedLikes,
-        parsedItem
+        parsedItem,
+        pointsWPM,
+        setPointsWPM
         
         }
     return (

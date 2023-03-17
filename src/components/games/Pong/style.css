@@ -1,0 +1,52 @@
+.pong-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+  }
+  
+  .pong-score {
+    display: flex;
+    justify-content: space-between;
+    width: 400px;
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .pong-game {
+    position: relative;
+    width: 600px;
+    height: 400px;
+    background-color: #fff;
+    border: 2px solid #000;
+    box-sizing: border-box;
+  }
+  
+  .pong-ball {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: #000;
+    border-radius: 50%;
+  }
+  
+  .pong-player1 {
+    position: absolute;
+    width: 20px;
+    height: 80px;
+    background-color: #000;
+    top: 160px;
+    left: 20px;
+  }
+  
+  .pong-player2 {
+    position: absolute;
+    width: 20px;
+    height: 80px;
+    background-color: #000;
+    top: 160px;
+    right: 20px;
+  }

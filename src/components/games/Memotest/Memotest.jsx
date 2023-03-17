@@ -26,7 +26,9 @@ const Memotest = () => {
     
     const [guessed, setGessed] = useState([])
     const [selected, setSelected] = useState([])
-    const { points, setPoints,parsedItem,user,editUSER } = UseDataContext()
+    const { user,editUSER,USERS } = UseDataContext()
+  
+
 
     //Escuchamos a selected:
     useEffect(() => {
@@ -55,7 +57,7 @@ const Memotest = () => {
 
     useEffect(() => {
         if(user?.displayName){
-            editUSER(user.metadata.createdAt, points)
+            editUSER(user.metadata.createdAt, points, 'WPM')
             }
     }, [points])
     

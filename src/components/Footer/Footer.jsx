@@ -9,7 +9,7 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 const Footer = () => {
   return (
     <footer >
-        <ul>
+        <ul className='ul_footer'>
             <li><a target='_blank' href='https://www.instagram.com/leeansilva_/'><InstagramIcon/></a></li>
             <li><a target='_blank' href='https://www.linkedin.com/in/leandrosilva-/'><LinkedInIcon/></a></li>
             <li><a target='_blank' href='https://www.facebook.com/lean.silva.92/'><FacebookIcon/></a></li>

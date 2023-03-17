@@ -5,6 +5,7 @@ const games =[
       link:'/games/memotest/',
       image:'https://cdn-icons-png.flaticon.com/512/2598/2598691.png',
       like: false,
+      status: 'play',
     },
     {
       title:'WPM',
@@ -12,6 +13,7 @@ const games =[
       link:'/games/wpm/',
       image:'https://play-lh.googleusercontent.com/uE-rLPFKIsgq4LWhHBOtkvHimgP8v-nKuqMsEZ4QRr4KZLUkJdJpXi5zx09s1YnsHw=w240-h480-rw',
       like: false,
+      status: 'play',
     },
     {
       title:'MK1',
@@ -19,6 +21,7 @@ const games =[
       link:'/games/wpm/',
       image:'https://1000marcas.net/wp-content/uploads/2020/11/Mortal-Kombat-logo.png',
       like: false,
+      status: 'beta',
     },
     {
       title:'Pacman',
@@ -26,6 +29,7 @@ const games =[
       link:'/games/pacman/',
       image:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTh0LDtqmI-4w9G--0PPrfcx80KneQhvtPZog&usqp=CAU',
       like: false,
+      status: 'beta',
     },
     {
         title:'Hangman',
@@ -33,6 +37,7 @@ const games =[
         link:'/games/hangman/',
         image:'https://t4.ftcdn.net/jpg/05/17/38/33/360_F_517383341_8nWEFfM1KL3K5LNTjUDrne3x0kZiuxuj.jpg',
         like: false,
+        status: 'beta',
       },
     {
         title:'Pong',
@@ -40,6 +45,7 @@ const games =[
         link:'/games/pong/',
         image:'https://eu-images.contentstack.com/v3/assets/blt95b381df7c12c15d/blt89d05d32d9b26f77/611f73e48d060c638cdba25f/0401.png?width=828&quality=80&format=webply&disable=upscale',
         like: false,
+        status: 'beta',
       },
 ]
 

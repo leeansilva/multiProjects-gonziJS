@@ -10,6 +10,7 @@ import Minesweeper from './components/games/Minesweeper/Minesweeper.jsx'
 import Hangman from './components/games/Hangman/Hangman'
 import Pacman from './components/games/Pacman/Pacman'
 import ContactMe from './pages/Contact me/ContactMe'
+import PongGame from './components/games/Pong/PongGame'
 
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
           <Route element={<Minesweeper rows={8} cols={8} bombs={10}/>} path='games/minesweeper'/>
           <Route element={<Hangman/>} path='games/hangman'/>
           <Route element={<Pacman/>} path='games/pacman'/>
+          <Route element={<PongGame/>} path='games/pong'/>
         
         <Route element={<Rankings/>} path='/rankings'/>
         <Route element={<ContactMe/>} path='/contact'/>

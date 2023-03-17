@@ -8,8 +8,8 @@ import './style.css'
 const GoogleLog = () => {
 
   const [logDone,setLogDone] = useState(false);
-  const { googleSignIn, logOut, user, addUSER, LOGOut, setLOGOut, USERS,points } = UseDataContext()
-  const lastUser = [...USERS]
+  const { googleSignIn, logOut, user, addUSER, LOGOut, setLOGOut, USERS,parsedItem } = UseDataContext()
+  const lastUser = parsedItem
 
   const handleGoogleSignIng = async () =>{
     try {
@@ -21,11 +21,13 @@ const GoogleLog = () => {
 
   //ADD USER TO LOCALSTORAGE
   useEffect(() => {
-    if (user?.displayName && logDone === false && user.displayName !== lastUser[lastUser.length - 1].nickName ){
-      setLogDone(true)
-      addUSER(user.metadata.createdAt, user.displayName,points, user.photoURL,'Argentina')
-    }
+    const existingUser = lastUser.find(u => u.nickName === user?.displayName);
 
+    if (!existingUser && user?.displayName && logDone === false ){
+      setLogDone(true)
+      addUSER(user.metadata.createdAt, user.displayName, user.photoURL,'Argentina')
+      console.log('addddddddddd');
+    }
     if(LOGOut === true){
       console.log("se feuee");
       setLOGOut(false)
