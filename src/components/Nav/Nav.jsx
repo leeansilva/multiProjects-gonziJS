@@ -60,7 +60,7 @@ function ResponsiveAppBar() {
             <img alt='logo' src='https://icon-library.com/images/joystick-icon-png/joystick-icon-png-16.jpg'/>
           </div>
          
-
+          {/* BOX SMALL SCREEN START */}
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }} className="navxs">
             <IconButton
               size="large"
@@ -87,14 +87,17 @@ function ResponsiveAppBar() {
                     horizontal: 'left',
                 }}
                 open={Boolean(anchorElNav)}
+
+                // para navegar entre las paginas smallscreen:
                 onClose={handleCloseNavMenu}
+                onClick={ (e)=>{const name = e.target.textContent; navigate(name.toLowerCase() === 'contact me' ? 'contact' : name.toLowerCase())} }
                 sx={{
                     display: { xs: 'block', md: 'none' },
                 }}
                 >
                 {pages.map((page) => (
                     <MenuItem key={page} onClick={handleCloseNavMenu}>
-                    <Typography textAlign="center">{page}</Typography>
+                      <Typography  textAlign="center">{page}</Typography>
                     </MenuItem>
                 ))}
                 </Menu>

@@ -10,7 +10,7 @@ const Home = () => {
   const { user, isLoading} = UseDataContext();
 
   return (
-    <>
+    <div className='home__page__container'>
     {
         !isLoading && !user?.displayName ? 
         <div className={user?.displayName ? ' container_title animate__animated animate__backOutDown'   : 'container_title'}>
@@ -21,13 +21,13 @@ const Home = () => {
         </div>
         :
         <div className={user?.displayName ? ' container_title animate__animated animate__bounceInDown'   : 'container_title'}>
-          <h1 className='animate__animated animate__bounce text'>
+          <h1 className='animate__animated animate__bounce text container_title'>
               Welcome {user.displayName}
           </h1>
           <GoogleLog/>
         </div>
     }
-    </>
+    </div>
   )
 }
 
