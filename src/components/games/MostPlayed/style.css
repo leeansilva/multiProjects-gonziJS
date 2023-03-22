@@ -45,7 +45,7 @@
 
 }
 
-@media screen and (max-width: 430px) {
+@media screen and (max-width: 515px) {
     .MostPlayed__container{
         position: fixed;
         width: 100%;
@@ -82,3 +82,15 @@
         z-index: 300;
     }
   }
+
+  @media screen and (min-width: 515px) and (max-width: 750px) {
+    .MostPlayed__container{
+       
+    width: 35%;
+    }  
+
+} 
+
+
+
+  

@@ -1,8 +1,7 @@
 
-import { Typography } from '@mui/material';
 import CardAvatarSlider from '../CardAvatarSlider/CardAvatarSlider';
 import Slider from '../Slider/Slider';
-import './style.css'
+import './style.css';
 
 
 function MostPlayed() {
