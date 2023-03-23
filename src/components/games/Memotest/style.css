@@ -45,3 +45,30 @@
     margin: 0 auto;
     
 }
+@media screen and (min-width: 250px ) and (max-width: 920px) {
+    .memotest_container{
+        height: 50%;
+        width: 100%;
+    }
+    .gameMEMOTEST__container{
+        flex-direction: column;
+        height: 90vh;
+        justify-content: center;
+    }
+    .pointsMemotest__container{
+        position: absolute;
+        top: 60px;
+    }
+   }
+
+@media screen and (min-height: 720px) {
+    .memotest_container{
+        height: 50%;
+        width: 100%;
+    }
+    .gameMEMOTEST__container{
+        flex-direction: column;
+        height: 100vh;
+        justify-content: center;
+    }
+} 

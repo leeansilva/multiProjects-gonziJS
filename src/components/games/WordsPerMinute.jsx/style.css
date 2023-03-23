@@ -9,7 +9,7 @@
 .gameWPM__container{
     display: flex;
     justify-content: center;
-    height: 87%;
+    height: 95%;
     background-color: rgb(34, 33, 33);
 }
 
@@ -21,3 +21,9 @@
     display: flex;
 }
 
+@media screen and (min-width: 250px ) and (max-width: 920px) {
+    .gameWPM__container{
+      
+        overflow: hidden;
+    }
+   }

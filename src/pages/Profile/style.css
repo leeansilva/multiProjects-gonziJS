@@ -92,9 +92,13 @@ font-family: 'Maven Pro', sans-serif;
 
 .likedGames__container{
     display: flex;
-    width: 70%;
-    background-color: #111;
+    width: 100%;
+    
+    position: relative;
+    background-color: #111010;
     border-radius: 15px;
+    flex-wrap: wrap;
+    border: 1px solid antiquewhite;
     justify-content: center;
     align-items: center;
 
@@ -111,3 +115,59 @@ font-family: 'Maven Pro', sans-serif;
 .h4{
     color: rgb(121, 119, 119);
 }
+.pageContainer{
+    height: 100vh;
+    position: relative;
+    overflow-y: auto;
+}
+
+
+@media screen and (max-width: 760px ) {
+   .container_user__info{
+    flex-direction: column;
+    width: auto;
+    height: 20%;
+    margin-bottom: 60px;
+   }
+   .position__conteiner{
+    width: auto;
+    flex-direction: column;
+    margin-bottom: 20%;
+    height: 60%;
+    max-height: 300px;
+   }
+   .container_user__stats{
+    width: auto;
+    margin: 0 auto;
+    align-items: center;
+    }
+    .aside__user{
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .pageContainer{
+        max-height:89vh;
+        overflow: auto;
+    }
+    .container_user{
+        height: 150vh;
+    }
+    .likedGames__container{
+        display: flex;
+        border-radius: 15px;
+        justify-content: center;
+        align-items: center;
+        height: auto;
+        padding: 20px;
+        border: 1px solid antiquewhite;
+
+    } 
+   
+    
+}
+
+
+
+
+   

@@ -9,7 +9,6 @@
     gap: 10px;
     border-radius: 11px;
     margin-top: 10px;
- 
 }
 
 .contactUs__container{
@@ -18,6 +17,9 @@
     justify-content: center;
     align-items: center;
     background-color: rgb(35, 32, 32);
+    overflow-y: auto;
+    max-height: 90vh;
+    padding: 150px 0;
 }
 
 hr{
@@ -37,3 +39,38 @@ hr{
     color: rgb(120, 120, 120);
 }
 
+.pageContactMe{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media screen and (min-width: 250px ) {
+    .contactUs__container{
+        align-items: center;
+        height: 100%;
+        background-color: rgb(35, 32, 32);
+    }
+    .writeMe{
+        text-align: center;
+    }
+    .form__container{
+        display: flex;
+        margin: 20px 0 90px 0;
+        width: 80%;
+        padding: 10px;
+        margin-top: 10px;
+    }
+    .info__us{
+        margin-top:30px ;
+    }
+   }
+
+   @media screen and (max-height: 747px) {
+    .contactUs__container{
+        align-items: center;
+        height: 130%;
+        background-color: rgb(35, 32, 32);
+    }
+   }

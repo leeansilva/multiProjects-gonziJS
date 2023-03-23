@@ -87,7 +87,7 @@
     display: flex;
     align-items: center;
 }
-@media screen and (min-width: 250px) {
+@media screen and (min-width: 250px ) and (max-width: 767px) {
    .ranking__country{
     display: none;
     flex: 1;
@@ -103,4 +103,17 @@
    }
   }
 
-  /* Celulares medianos (por ejemplo, iPhone 6/7/8) */
+@media screen and (min-width: 770px) {
+    .ranking__country{
+        flex: 1;
+       }
+       .ranking__name{
+        flex: 2;
+       }
+       .ranking__num{
+        flex: 1;
+       }
+       .ranking__points{
+        flex: 1;
+       }
+}

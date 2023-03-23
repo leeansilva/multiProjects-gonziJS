@@ -112,7 +112,15 @@ const Profile = () => {
      };
 
   return (
-    <>
+    <div className='pageContainer'>
+    {/* ALERT GREEN */}
+    <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+        <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+          Hi {user.displayName}
+        </Alert>
+      </Snackbar>
+
+      {/* ALERT GREEN END*/}
     {
     user?.reloadUserInfo?.photoUrl && 
     <div className='animate__animated animate__fadeIn container_user'>
@@ -215,13 +223,15 @@ const Profile = () => {
 
         {/* LIKEGAMES */}
 
-        {
-        likeGames.length === 0 ? (
-          <div style={{display:'flex', flexDirection:'column'}} className='likedGames__container'>
+        
+        <div style={{display:'flex', flexDirection:'row'}} className='likedGames__container'>
+        { likeGames.length === 0 ? (
+          <>
             <FavoriteBorderIcon/>
             <h2 className='likedGames__container'>The games you like will appear here.</h2>
             <h4 className='likedGames__container h4'>Play some games and if you like them, give it a like!</h4>
-          </div>
+          </>
+          
           ) : (
           likeGames.map((title) => {
             const gamesLiked = [games.find(game => game.title === title)]
@@ -241,7 +251,7 @@ const Profile = () => {
                     sx={{'&:hover':{padding:'10px', transition:'0.3s'},width:'120px',height:'100px'}}
                 />
                 <CardContent>
-                  <Typography gutterBottom variant="h5" component="div">
+                  <Typography className='gameTitle' gutterBottom variant="h5" component="div">
                       {gamesLiked[0].title}
                   </Typography>
                 </CardContent>
@@ -251,24 +261,19 @@ const Profile = () => {
               </Card>
             );
           })
-        )}
+        ) }
+        </div>
+        
        {/* LIKEGAMES end */}
       </div>
 
 
-      {/* ALERT GREEN */}
-      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-        <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
-          Hi {user.displayName}
-        </Alert>
-      </Snackbar>
-
-      {/* ALERT GREEN END*/}
+      
 
     </div>
                 
       }
-    </>
+    </div>
   )
 }
 

@@ -86,14 +86,15 @@ const Memotest = () => {
                 <Grid
                   container
                   spacing={1}
-                  sx={{ width: "80%", height: "50%", margin: "45px 80px" }}
+                  sx={{ width: "100%", height: "100%", margin: "45px 80px" }}
+                  
                 >
                   {IMAGES.map((image, index) => {
                     const [, url] = image.split("|");
                     return (
                       <Grid
                         item={true}
-                        xs={4}
+                        xs={3}
                         sm={2}
                         xl={2}
                         className="item"

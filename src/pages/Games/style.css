@@ -49,7 +49,7 @@
 
   @media screen and (min-width: 515px) and (max-width: 930px) {
      .pageGame{
-      height: 89vh;
+      height: 100vh;
       overflow-y: hidden;
      }
     .container_card{
@@ -65,7 +65,7 @@
     overflow-y: auto;
   }
   .pageGame{
-    height: 90vh;
+    height: 100vh;
     overflow-y: hidden;
   }
 } 
