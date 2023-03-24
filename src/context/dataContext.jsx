@@ -6,7 +6,6 @@ import { users } from "../data/users";
 import { games } from "../data/games";
 import { Navigate, useLocation } from "react-router-dom";
 import Stack from '@mui/material/Stack';
-import LinearProgress from '@mui/material/LinearProgress';
 import ResponsiveAppBar from "../components/Nav/Nav";
 import Footer from "../components/Footer/Footer";
 import { CircularProgress } from "@mui/material";

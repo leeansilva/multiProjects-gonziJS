@@ -19,6 +19,10 @@ const ContactMe = () => {
   const [messageValue, setMessageValue] = useState('');
   const [open, setOpen] = React.useState(false);
 
+  const VITE_EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID
+  const VITE_EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+
+
 
   const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
@@ -30,7 +34,7 @@ const ContactMe = () => {
   const sendEmail = (e) => {
     e.preventDefault();
 
-    emailjs.sendForm('service_p1ngp89', 'template_coloozq', form.current, 'UiXYn0hLL3HAEmkGC')
+    emailjs.sendForm(VITE_EMAILJS_SERVICE_ID, 'template_coloozq', form.current, VITE_EMAILJS_PUBLIC_KEY)
       .then((result) => {
         console.log(result.text);
         setIsSent(true);
