@@ -5,6 +5,12 @@ import { useLocalStorage } from "../hooks/useLocalStorage";
 import { users } from "../data/users";
 import { games } from "../data/games";
 import { Navigate, useLocation } from "react-router-dom";
+import Stack from '@mui/material/Stack';
+import LinearProgress from '@mui/material/LinearProgress';
+import ResponsiveAppBar from "../components/Nav/Nav";
+import Footer from "../components/Footer/Footer";
+import { CircularProgress } from "@mui/material";
+
 
 const DataContext = React.createContext();
 
@@ -128,7 +134,18 @@ function DataProvider ({ children }) {
     
       if (isLoading) {
         // Muestra un indicador de carga mientras se carga la información del usuario
-        return <div>Loading...</div>;
+        return (
+        
+        
+          <>
+            <ResponsiveAppBar></ResponsiveAppBar>
+            <Stack sx={{ width: '100%', height:'100vh', color: 'grey.500',justifyContent:'center',alignItems:'center' }} spacing={2}>
+                <CircularProgress color="inherit" />
+            </Stack>
+            <Footer style={{position:'absolute', bottom:'0'}} />
+          </>
+        
+        );
       }
     ///FIN GOOGLE SIGNIN
 

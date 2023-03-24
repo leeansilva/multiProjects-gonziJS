@@ -81,6 +81,7 @@ const Games = () => {
                   component="img"
                   alt={game.title}
                   height="120"
+                  className='img'
                   image={game.image}
                   sx={{ "&:hover": { padding: "10px", transition: "0.3s" } }}
                 />

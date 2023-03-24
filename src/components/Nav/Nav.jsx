@@ -22,9 +22,11 @@ function ResponsiveAppBar() {
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const navigate = useNavigate()
   
- const { isLoading,user } = UseDataContext()
+  const data = UseDataContext();
 
-  const pages = !isLoading &&  user?.displayName ? ['GAMES', 'RANKINGS', 'CONTACT ME','PROFILE'] : ['GAMES', 'RANKINGS', 'CONTACT ME'];
+
+  
+  const pages =  data?.user?.displayName ? ['GAMES', 'RANKINGS', 'CONTACT ME','PROFILE'] : ['GAMES', 'RANKINGS', 'CONTACT ME'];
   const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
   
   
@@ -56,7 +58,7 @@ function ResponsiveAppBar() {
       <Container maxWidth="xl" className='container'>
         <Toolbar disableGutters>
           
-          <div className='img' onClick={()=>{navigate('/')}}>
+          <div className='imgNAV' onClick={()=>{navigate('/')}}>
             <img alt='logo' src='https://icon-library.com/images/joystick-icon-png/joystick-icon-png-16.jpg'/>
           </div>
          

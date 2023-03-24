@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+.notFoundPAGE{
+    width: 100%;    
+    height: 90vh;
+}
+
+.notFound {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    overflow-y: auto;
+    margin-bottom: 50px ;
+    width: 100%;
+    background-color: rgb(189, 182, 182);
+}
+
+.createdBy{
+    color: rgb(0, 0, 0);
+    font-size: 10px;
+    font-family: 'Press Start 2P', cursive;
+}
+
+ .cuatro {
+    color: red;
+    font-size: 100px;
+    font-family: 'Press Start 2P', cursive;
+}
+.pageNotFound{
+    font-size: 70px;
+    font-family: 'Press Start 2P', cursive;
+}
+
+.notFound, .cuatro, .pageNotFound, .BackTo {
+    margin-bottom: 20px;
+    font-family: 'Press Start 2P', cursive;
+}
+
+.text1 a {
+    text-decoration: none;
+    margin-right: 20px;
+    font-family: 'Press Start 2P', cursive;
+}
+
+.text1 a:hover {
+    color: red;
+    text-decoration: underline; 
+}
+
+
+
+@media only screen and (max-width: 768px) {
+    .notFound {
+        flex-direction: column;
+        justify-content: space-around;
+    }
+    .img1 {
+        width: 70vw;
+        height: auto;
+    }
+    .cuatro {
+        font-size: 50px;
+    }
+    .pageNotFound {
+        font-size: 25px;
+    }
+    .text1 a:active {
+    color: red;
+    text-decoration: underline; 
+  }
+}
+
+@media screen and (max-height: 920px ) {
+    .notFoundPAGE{
+        width: 100%;    
+        height: 90vh;
+    }
+    .notFound{
+        height: 96%;
+    }
+}

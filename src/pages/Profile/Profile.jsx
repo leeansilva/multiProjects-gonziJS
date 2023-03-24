@@ -128,7 +128,7 @@ const Profile = () => {
         <Avatar 
           alt='profile__image' 
           src={user.reloadUserInfo.photoUrl}
-          sx={{ width: 100, height: 80 }}
+          sx={{ width: 100, height: 100,backgroundColor:'aliceblue' }}
           className="profile_image" 
         />
         <div>

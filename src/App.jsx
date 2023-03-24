@@ -13,6 +13,7 @@ import ContactMe from './pages/Contact me/ContactMe'
 import PongGame from './components/games/Pong/PongGame'
 import Profile from './pages/Profile/Profile'
 import { useEffect } from 'react'
+import NotFound from './components/NotFound/NotFound'
 
 
 function App() {
@@ -40,6 +41,8 @@ function App() {
               <Profile/>
             </PrivateRoutes>
         } path='/profile'/>
+
+        <Route element={ <NotFound/> } path='*'/>
 
         
       </Routes>
