@@ -11,7 +11,7 @@ import './style.css'
 
 
 const Rankings = () => {
-  const { USERS,position,setPosition } = UseDataContext();
+  const { USERS } = UseDataContext();
   //copy users of LOCALSTORAGE.
   const users = [...USERS]
   //dashboard
@@ -41,9 +41,9 @@ const Rankings = () => {
   
 
   return (
-    <>
+    <div className='RANKING_PAGE'>
 
-      <Stack spacing={1}>
+      <Stack className='Ranking_container' spacing={1}>
         <div className='top__container'>
           <div style={{display:'flex'}}>
             <h1 style={{margin: '0 auto',fontFamily: "'Press Start 2P', cursive"}}> Top 20 </h1>
@@ -131,7 +131,7 @@ const Rankings = () => {
       
       </Stack>
 
-    </>
+    </div>
   )
 }
 

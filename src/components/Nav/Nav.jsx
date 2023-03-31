@@ -24,8 +24,6 @@ function ResponsiveAppBar() {
   
   const data = UseDataContext();
 
-
-  
   const pages =  data?.user?.displayName ? ['GAMES', 'RANKINGS', 'CONTACT ME','PROFILE'] : ['GAMES', 'RANKINGS', 'CONTACT ME'];
   const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
   
@@ -33,7 +31,6 @@ function ResponsiveAppBar() {
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
-
 
   const handleCloseNavMenu = (e) => {
     setAnchorElNav(null);

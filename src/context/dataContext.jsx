@@ -15,7 +15,7 @@ const DataContext = React.createContext();
 
 function DataProvider ({ children }) {
     //accede,mos a los items para obtener los puntos del usuario.
-    const localStorageItem = localStorage.getItem('USERS_V1');
+    const localStorageItem = localStorage?.getItem('USERS_V1');
     let parsedItem = JSON.parse(localStorageItem);
 
     const localStorageLikes = localStorage.getItem('gamesLiked');
@@ -24,8 +24,6 @@ function DataProvider ({ children }) {
     //Estados
     const [user, setUser] = useState(null);
     const [LOGOut, setLOGOut] = useState(false);
-    const [points,setPoints] = useState(0);
-    const [position,setPosition] = useState([])
     const [likeGames, setLikeGames] = useState([])
     const  [pointsWPM, setPointsWPM] = useState()
     const  [pointsMemo, setPointsMemo] = useState(0)
@@ -40,14 +38,14 @@ function DataProvider ({ children }) {
         error
     } = useLocalStorage('USERS_V1',users);
 
-    const existingUser = parsedItem.find(u => u.nickName === user?.displayName);
+    const existingUser = parsedItem?.find(u => u.nickName === user?.displayName);
     
     
    //Use effect para que se seteen los puntos con la info del usuario. Mapeamos cada usuario.
    useEffect(() => {
     async function getPointsWPM() {
       try {
-        if (points >= 0 && user?.length > 1 || localStorageLikes) {
+        if ( user?.length > 1 || localStorageLikes) {
           for (const e of parsedItem) {
             if (user?.displayName === e.nickName && e.points?.WPM !== undefined) {
               setLikeGames(parsedLikes);
@@ -68,13 +66,6 @@ function DataProvider ({ children }) {
     getPointsWPM();
   }, [user]);
 
-   //use Effect para setear la posicion a tiempo real
-   
-//    useEffect(() => {
-//     const users = parsedItem;
-//     users.sort((x, y)=>  y.points - x.points);
-//     setPosition(users)
-//    }, [points,pointsWPM])
 
    //Funcion para crear un objeto con los juegos disponibles.
 
@@ -131,7 +122,7 @@ function DataProvider ({ children }) {
         };
       }, []);
     
-      if (isLoading) {
+      if (isLoading || loading) {
         // Muestra un indicador de carga mientras se carga la información del usuario
         return (
         
@@ -157,8 +148,6 @@ function DataProvider ({ children }) {
         setLOGOut,
         USERS,
         editUSER,
-        position,
-        setPosition,
         likeGames,
         setLikeGames,
         addLikes,

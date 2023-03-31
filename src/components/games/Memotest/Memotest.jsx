@@ -2,7 +2,6 @@
 import { Button, Grid } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { UseDataContext } from '../../../context/dataContext';
-
 import './style.css'
 
 const IMAGES = [
@@ -27,7 +26,7 @@ const Memotest = () => {
     const [guessed, setGessed] = useState([]);
     const [selected, setSelected] = useState([]);
     const [winner, setWinner] = useState(false);
-    const { user,editUSER,USERS,pointsMemo,setPointsMemo, isLoading } = UseDataContext()
+    const { user,editUSER,pointsMemo,setPointsMemo, isLoading } = UseDataContext()
 
     //Solucion al primer logeo y error de pointsMemo undefined.
     useEffect(() => {

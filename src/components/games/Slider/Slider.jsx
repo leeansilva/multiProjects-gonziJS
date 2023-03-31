@@ -5,7 +5,6 @@ import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
-
 import './Slider.css'
 import 'animate.css';
 
@@ -36,10 +35,7 @@ const Slider = () => {
   const [arrow,setArrow] = useState(false)
 
   const length = mostPlayedGames?.length;
-
-  //if (!Array.isArray(imagesCarousel) || length === 0){return;}
   
-
   const nextImage = ()=>{
     setImageA(imageA === length - 1 ? 0 : imageA + 1 );
     setArrow(false)

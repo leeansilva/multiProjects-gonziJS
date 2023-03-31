@@ -7,6 +7,7 @@
     justify-content: space-between;
     padding: 0 15px;
     font-family: 'Press Start 2P', cursive;
+    ;
     
 }
 
@@ -80,6 +81,15 @@
     justify-content: center;
     width: 100%;
 
+}
+
+.Ranking_container{
+    overflow-y: auto;
+    height: 87vh;
+}
+
+.RANKING_PAGE{
+    height: 100vh;
 }
 
 .menuRanking__container{

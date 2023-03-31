@@ -7,7 +7,7 @@ import { UseDataContext } from '../../context/dataContext';
 //npm run dev -- --host
 
 const Home = () => {
-  const { user, isLoading} = UseDataContext();
+  const { user, isLoading } = UseDataContext();
 
   return (
     <div className='home__page__container'>

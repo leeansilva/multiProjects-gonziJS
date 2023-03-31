@@ -5,14 +5,12 @@ import WordsPerMinute from './components/games/WordsPerMinute.jsx/WordsPerMinute
 import Games from './pages/Games/Games'
 import {  PrivateRoutes } from './context/dataContext'
 import Rankings from './pages/Rankings/Rankings'
-import { Modal } from 'bootstrap'
 import Minesweeper from './components/games/Minesweeper/Minesweeper.jsx'
 import Hangman from './components/games/Hangman/Hangman'
 import Pacman from './components/games/Pacman/Pacman'
 import ContactMe from './pages/Contact me/ContactMe'
 import PongGame from './components/games/Pong/PongGame'
 import Profile from './pages/Profile/Profile'
-import { useEffect } from 'react'
 import NotFound from './components/NotFound/NotFound'
 
 

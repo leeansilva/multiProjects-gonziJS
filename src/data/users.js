@@ -24,7 +24,7 @@ const users =[
         id: '4',
         nickName:'nekotina',
         points: {WPM: 1096, Memotest: 28},
-        image: 'https://pbs.twimg.com/profile_images/1628893101786791942/cyz9O-mH_400x400.jpg',
+        image: 'https://pbs.twimg.com/profile_images/1514781425106489348/ZE-Hkq5c_400x400.jpg',
         country:'EEUU',
     },
     {
